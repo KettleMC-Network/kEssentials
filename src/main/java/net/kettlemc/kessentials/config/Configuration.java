@@ -69,7 +69,7 @@ public class Configuration {
             CONFIG.write();
             return true;
         } catch (IOException e) {
-            Essentials.instance().getPlugin().getLogger().severe("Failed to load configuration: " + e.getMessage());
+            Essentials.instance().getLogger().severe("Failed to load configuration: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

@@ -44,10 +44,10 @@ public class WarpHandler {
             Warp[] warps = OBJECT_MAPPER.readValue(WARPS_FILE, Warp[].class);
             this.warps.addAll(Arrays.asList(warps));
         } catch (IOException e) {
-            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Couldn't load warps from file!", e);
+            Essentials.instance().getLogger().log(Level.SEVERE, "Couldn't load warps from file!", e);
         }
 
-        this.autoSaveTask.runTaskTimerAsynchronously(Essentials.instance().getPlugin(), Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20, Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20);
+        this.autoSaveTask.runTaskTimerAsynchronously(Essentials.instance(), Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20, Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20);
     }
 
     public void saveWarps() {
@@ -58,7 +58,7 @@ public class WarpHandler {
             }
             OBJECT_MAPPER.writeValue(WARPS_FILE, this.warps.toArray(new Warp[0]));
         } catch (IOException e) {
-            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Couldn't save warps to file!", e);
+            Essentials.instance().getLogger().log(Level.SEVERE, "Couldn't save warps to file!", e);
         }
     }
 

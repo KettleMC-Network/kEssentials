@@ -38,7 +38,7 @@ public class DiscordClearLaggListener implements Listener {
                     lastCleared = 0;
                 }
 
-            }.runTaskLater(Essentials.instance().getPlugin(), 40L);
+            }.runTaskLater(Essentials.instance(), 40L);
 
 
         }

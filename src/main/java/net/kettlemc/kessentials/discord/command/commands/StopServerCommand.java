@@ -46,7 +46,7 @@ public class StopServerCommand extends SlashCommand {
 
         event.reply(AdventureUtil.componentToLegacy(Messages.DISCORD_RESTART.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds))))).queue();
         Bukkit.getServer().broadcastMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_RESTART_MINECRAFT.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds)))));
-        Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), () -> Bukkit.getServer().shutdown(), seconds * 20L);
+        Bukkit.getScheduler().runTaskLater(Essentials.instance(), () -> Bukkit.getServer().shutdown(), seconds * 20L);
     }
 
     @Override

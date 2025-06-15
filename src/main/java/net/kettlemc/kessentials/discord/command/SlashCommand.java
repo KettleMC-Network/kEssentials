@@ -24,7 +24,7 @@ public abstract class SlashCommand {
 
     public void register() {
         if (!SlashCommand.commandMap.containsKey(this.name())) {
-            Essentials.instance().getPlugin().getLogger().info("Adding discord slash command " + this.name() + " to the list.");
+            Essentials.instance().getLogger().info("Adding discord slash command " + this.name() + " to the list.");
             SlashCommand.commandMap.put(this.name(), this);
         }
     }

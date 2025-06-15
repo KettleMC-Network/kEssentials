@@ -21,7 +21,7 @@ public class RestartTimer {
         for (String time : Configuration.RESTART_TIMES.getValue()) {
             LocalDateTime parsed = Util.parseTime(time);
             if (parsed.isBefore(now)) {
-                Essentials.instance().getPlugin().getLogger().info("Restart time " + parsed + " is in the past, adding 24 hours.");
+                Essentials.instance().getLogger().info("Restart time " + parsed + " is in the past, adding 24 hours.");
                 parsed = parsed.plusHours(24);
             }
             if (closest == null || parsed.isBefore(closest)) {
@@ -30,7 +30,7 @@ public class RestartTimer {
         }
 
         if (closest == null) {
-            Essentials.instance().getPlugin().getLogger().warning("No valid restart times found in the configuration.");
+            Essentials.instance().getLogger().warning("No valid restart times found in the configuration.");
             return;
         }
 
@@ -39,9 +39,9 @@ public class RestartTimer {
 
         for (long timeWarning : Configuration.RESTART_TIMES_WARNING.getValue()) {
             if (delay >= timeWarning) {
-                Essentials.instance().getPlugin().getLogger().info("Scheduled restart warning " + timeWarning + " ticks before restart.");
+                Essentials.instance().getLogger().info("Scheduled restart warning " + timeWarning + " ticks before restart.");
                 long warningDelay = delay - timeWarning;
-                Bukkit.getScheduler().runTaskLaterAsynchronously(Essentials.instance().getPlugin(), () -> {
+                Bukkit.getScheduler().runTaskLaterAsynchronously(Essentials.instance(), () -> {
                     Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(ctx, warningDelay * 20));
                     Essentials.instance().messages().broadcastMessage(Messages.RESTART, timeValue);
                 }, warningDelay);

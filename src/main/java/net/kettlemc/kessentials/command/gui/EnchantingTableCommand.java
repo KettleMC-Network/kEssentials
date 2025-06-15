@@ -76,9 +76,9 @@ public class EnchantingTableCommand implements CommandExecutor, TabCompleter {
     }
 
     private void openEnchanting(Player player, int level1, int level2, int level3) {
-        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance().getPlugin(), level1));
-        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance().getPlugin(), level2));
-        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance().getPlugin(), level3));
+        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance(), level1));
+        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance(), level2));
+        player.setMetadata("kessentials.enchanting.level", new FixedMetadataValue(Essentials.instance(), level3));
         player.openEnchanting(null, true);
     }
 

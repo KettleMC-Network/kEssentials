@@ -35,8 +35,8 @@ public class JoinQuitListener implements Listener {
         }
 
         Configuration.ON_JOIN_COMMANDS.getValue().forEach(command ->
-                Essentials.instance().getPlugin().getServer().dispatchCommand(
-                        Essentials.instance().getPlugin().getServer().getConsoleSender(),
+                Essentials.instance().getServer().dispatchCommand(
+                        Essentials.instance().getServer().getConsoleSender(),
                         command.replace("%player%", event.getPlayer().getName())
                 )
         );
