@@ -39,7 +39,7 @@ public class HomeHandler {
             HOMES_DIR.toFile().mkdirs();
         }
 
-        this.autoSaveTask.runTaskTimerAsynchronously(Essentials.instance().getPlugin(), Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20, Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20);
+        this.autoSaveTask.runTaskTimerAsynchronously(Essentials.instance(), Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20, Configuration.AUTO_SAVE_INTERVAL_SECONDS.getValue() * 20);
     }
 
     public void loadHomes(UUID uuid) {
@@ -49,7 +49,7 @@ public class HomeHandler {
             this.homes.put(uuid, new ArrayList<>());
             this.homes.get(uuid).addAll(Arrays.asList(homes));
         } catch (IOException e) {
-            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Couldn't load homes for uuid '" + uuid + "'.", e);
+            Essentials.instance().getLogger().log(Level.SEVERE, "Couldn't load homes for uuid '" + uuid + "'.", e);
         }
     }
 
@@ -71,7 +71,7 @@ public class HomeHandler {
             if (unload)
                 this.homes.remove(owner);
         } catch (IOException e) {
-            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Couldn't save homes for uuid '" + owner + "'.", e);
+            Essentials.instance().getLogger().log(Level.SEVERE, "Couldn't save homes for uuid '" + owner + "'.", e);
         }
     }
 

@@ -1,12 +1,8 @@
 dependencies {
-    // Add your dependencies here, no need to add spigot or paper as they can be added using the gradle.properties
-
-    // Use "implementation" for dependencies that are not shaded into the final jar
-    // Use "internal" for dependencies that are shaded into the final jar
-
     implementation "net.kyori:adventure-api:4.14.0"
     implementation "net.kyori:adventure-text-minimessage:4.14.0"
     implementation "net.kyori:adventure-platform-bukkit:4.3.0"
-    implementation "net.dv8tion:JDA:5.0.0-beta.24"
     implementation "net.luckperms:api:5.3"
+
+    internal "net.dv8tion:JDA:5.0.0-beta.24"
 }

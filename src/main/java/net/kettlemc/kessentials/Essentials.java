@@ -25,7 +25,6 @@ import net.kettlemc.kessentials.discord.listener.bukkit.DiscordAsyncChatListener
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordClearLaggListener;
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordJoinQuitListener;
 import net.kettlemc.kessentials.listener.*;
-import net.kettlemc.kessentials.loading.Loadable;
 import net.kettlemc.kessentials.teleport.HomeHandler;
 import net.kettlemc.kessentials.teleport.WarpHandler;
 import net.kettlemc.kessentials.util.RestartTimer;
@@ -40,27 +39,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Essentials implements Loadable {
+public final class Essentials extends JavaPlugin {
 
     public static final LanguageAPI<Player> LANGUAGE_API = BukkitLanguageAPI.of();
     private static Essentials instance;
 
-    private final ContentManager contentManager;
-    private final JavaPlugin plugin;
-    private MessageManager messageManager;
+    private final ContentManager contentManager = new ContentManager(this);
     private BukkitAudiences adventure;
+    private MessageManager messageManager;
 
     private DiscordBot discordBot;
     private HomeHandler homeHandler;
     private WarpHandler warpHandler;
-
-    public Essentials(JavaPlugin plugin) {
-        this.plugin = plugin;
-        this.contentManager = new ContentManager(plugin);
-    }
 
     public static Essentials instance() {
         return instance;
@@ -80,22 +72,22 @@ public final class Essentials implements Loadable {
 
         instance = this;
 
-        this.plugin.getLogger().info("Loading adventure support...");
-        this.adventure = BukkitAudiences.create(this.plugin);
+        this.getLogger().info("Loading adventure support...");
+        this.adventure = BukkitAudiences.create(this);
 
-        this.plugin.getLogger().info("Registering config...");
+        this.getLogger().info("Registering config...");
         if (!Configuration.load()) {
-            this.plugin.getLogger().severe("Failed to load config!");
+            this.getLogger().severe("Failed to load config!");
         }
 
-        this.plugin.getLogger().info("Loading messages...");
+        this.getLogger().info("Loading messages...");
         if (!Messages.load()) {
-            this.plugin.getLogger().severe("Failed to load messages!");
+            this.getLogger().severe("Failed to load messages!");
         }
 
         this.messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, adventure);
 
-        this.plugin.getLogger().info("Registering commands and listeners...");
+        this.getLogger().info("Registering commands and listeners...");
 
         // Register all the time commands with one instance of the TimeCommands class
         TimeCommands timeCommands = new TimeCommands();
@@ -142,10 +134,10 @@ public final class Essentials implements Loadable {
         this.contentManager.registerListener(new CommandListener());
         this.contentManager.registerListener(new EnchantingTableListener());
 
-        this.plugin.getLogger().info("Loading Discord bot...");
+        this.getLogger().info("Loading Discord bot...");
 
         if (!DiscordConfiguration.load()) {
-            this.plugin.getLogger().severe("Failed to load discord config!");
+            this.getLogger().severe("Failed to load discord config!");
         }
 
         // If the token is the default value, don't start the bot (disabled)
@@ -159,26 +151,26 @@ public final class Essentials implements Loadable {
                 this.contentManager.registerListener(new DiscordJoinQuitListener());
                 if (Bukkit.getPluginManager().getPlugin(Util.CLEARLAGG_PLUGIN_NAME) != null)
                     this.contentManager.registerListener(new DiscordClearLaggListener());
-                this.plugin.getLogger().info("Discord bot loaded successfully!");
+                this.getLogger().info("Discord bot loaded successfully!");
             }
         } else {
-            this.plugin.getLogger().info("No token provided, disabling discord bot...");
+            this.getLogger().info("No token provided, disabling discord bot...");
         }
 
-        this.plugin.getLogger().info("Loading warps and homes...");
+        this.getLogger().info("Loading warps and homes...");
         this.warpHandler = new WarpHandler();
         this.warpHandler.loadWarps();
         this.homeHandler = new HomeHandler();
         this.homeHandler.init();
 
-        this.plugin.getLogger().info("Starting restart timer...");
+        this.getLogger().info("Starting restart timer...");
         RestartTimer.scheduleRestart();
 
     }
 
     @Override
     public void onDisable() {
-        this.plugin.getLogger().info("Disabling plugin...");
+        this.getLogger().info("Disabling plugin...");
 
         if (this.discordBot != null) {
             this.discordBot.shutdown();
@@ -207,15 +199,6 @@ public final class Essentials implements Loadable {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
         }
         return this.adventure;
-    }
-
-    /**
-     * Returns the underlying plugin
-     *
-     * @return The underlying plugin
-     */
-    public Plugin getPlugin() {
-        return plugin;
     }
 
     /**

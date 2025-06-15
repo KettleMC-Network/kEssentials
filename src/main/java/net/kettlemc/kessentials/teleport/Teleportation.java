@@ -73,7 +73,7 @@ public class Teleportation {
                                 teleportation.getPlayer().teleport(teleportation.getTarget());
                                 teleportation.onFinish.run();
                             }
-                        }.runTask(Essentials.instance().getPlugin());
+                        }.runTask(Essentials.instance());
 
 
                         Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_SUCCESSFUL);
@@ -96,7 +96,7 @@ public class Teleportation {
                     cancel();
                 }
             }
-        }.runTaskTimerAsynchronously(Essentials.instance().getPlugin(), 10, 10);
+        }.runTaskTimerAsynchronously(Essentials.instance(), 10, 10);
     }
 
     public Player getPlayer() {

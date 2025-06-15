@@ -43,7 +43,7 @@ public class DiscordBot {
             this.registerCommands();
             return true;
         } catch (Exception e) {
-            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Discord bot failed to start.", e);
+            Essentials.instance().getLogger().log(Level.SEVERE, "Discord bot failed to start.", e);
             return false;
         }
     }
@@ -98,7 +98,7 @@ public class DiscordBot {
     }
 
     public void updateStatusDelayed() {
-        Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), this::updateStatus, 20L);
+        Bukkit.getScheduler().runTaskLater(Essentials.instance(), this::updateStatus, 20L);
     }
 
     public void updateStatus() {

@@ -22,7 +22,7 @@ public class MessageListener extends ListenerAdapter {
         List<Role> roles;
 
         if (event.getMember() == null) {
-            Essentials.instance().getPlugin().getLogger().warning("Member is null for message: " + event.getMessage().getContentDisplay());
+            Essentials.instance().getLogger().warning("Member is null for message: " + event.getMessage().getContentDisplay());
             roles = Collections.emptyList();
         } else {
             roles = event.getMember().getRoles();

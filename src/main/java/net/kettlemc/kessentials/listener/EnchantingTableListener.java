@@ -23,9 +23,9 @@ public class EnchantingTableListener implements Listener {
             event.getExpLevelCostsOffered()[2] = level3;
 
         } catch (Exception e) {
-            Essentials.instance().getPlugin().getLogger().log(java.util.logging.Level.SEVERE, "Error while setting custom enchanting levels for " + event.getEnchanter().getUniqueId(), e);
+            Essentials.instance().getLogger().log(java.util.logging.Level.SEVERE, "Error while setting custom enchanting levels for " + event.getEnchanter().getUniqueId(), e);
         } finally {
-            event.getEnchanter().removeMetadata("kessentials.enchanting.level", Essentials.instance().getPlugin());
+            event.getEnchanter().removeMetadata("kessentials.enchanting.level", Essentials.instance());
         }
 
     }

@@ -70,11 +70,11 @@ public class VanishCommand implements CommandExecutor, TabCompleter {
     private void toggleVanish(CommandSender sender, Player target) {
 
         if (isVanished(target)) {
-            target.setMetadata("vanished", new FixedMetadataValue(Essentials.instance().getPlugin(), false));
+            target.setMetadata("vanished", new FixedMetadataValue(Essentials.instance(), false));
             Essentials.instance().messages().sendMessage(target, Messages.VANISH_UNVANISHED);
             showToAllPlayers(target);
         } else {
-            target.setMetadata("vanished", new FixedMetadataValue(Essentials.instance().getPlugin(), true));
+            target.setMetadata("vanished", new FixedMetadataValue(Essentials.instance(), true));
             Essentials.instance().messages().sendMessage(target, Messages.VANISH_VANISHED);
             hideFromAllPlayers(target);
         }
