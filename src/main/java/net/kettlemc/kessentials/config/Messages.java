@@ -23,6 +23,7 @@ public class Messages {
     public static final AdventureMessage PLAYER_ONLY = AdventureMessage.of("messages.common.player-only", LANGUAGE_MANAGER);
     public static final AdventureMessage CONSOLE_ONLY = AdventureMessage.of("messages.common.console-only", LANGUAGE_MANAGER);
     public static final AdventureMessage PLAYER_NOT_FOUND = AdventureMessage.of("messages.common.player-not-found", LANGUAGE_MANAGER);
+    public static final AdventureMessage WORLD_NOT_FOUND = AdventureMessage.of("messages.common.world-not-found", LANGUAGE_MANAGER);
     public static final AdventureMessage COMMAND_DISABLED = AdventureMessage.of("messages.common.command-disabled", LANGUAGE_MANAGER);
 
     public static final AdventureMessage RESTART = AdventureMessage.of("messages.common.restart", LANGUAGE_MANAGER);
@@ -133,6 +134,10 @@ public class Messages {
 
     public static final AdventureMessage TPA_TPDENY = AdventureMessage.of("messages.tpa.tpdeny.tpdeny", LANGUAGE_MANAGER);
     public static final AdventureMessage TPA_TPDENY_USAGE = AdventureMessage.of("messages.tpa.tpdeny.usage", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage RTP_USAGE = AdventureMessage.of("messages.rtp.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage RTP_FAILED = AdventureMessage.of("messages.rtp.failed", LANGUAGE_MANAGER);
+
 
     public static final AdventureMessage DISCORD_CHAT_FORMAT = AdventureMessage.of("messages.discord.chat-format", LANGUAGE_MANAGER);
     public static final AdventureMessage DISCORD_NO_PERMISSION = AdventureMessage.of("messages.discord.no-permission", LANGUAGE_MANAGER);

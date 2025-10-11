@@ -60,6 +60,8 @@ public class Configuration {
 
     public static final IntegerConfigEntry DEFAULT_MAX_HOMES = IntegerConfigEntry.of(CONFIG, "kessentials.settings.default-max-homes", 1);
 
+    public static final IntegerConfigEntry RANDOM_TELEPORT_RADIUS = IntegerConfigEntry.of(CONFIG, "kessentials.settings.random-teleport-radius", 1000);
+
     private Configuration() {
     }
 

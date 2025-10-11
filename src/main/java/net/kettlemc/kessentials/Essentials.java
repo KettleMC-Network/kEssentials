@@ -215,9 +215,27 @@ public final class Essentials extends JavaPlugin {
      * @return True if the sender has permission to run the command, false otherwise
      */
     public boolean checkPermission(CommandSender sender, Command command, boolean other) {
+        return checkPermission(sender, command, "", other);
+    }
+
+    /**
+     * Checks if the sender has permission to run the command.
+     * When other is true, it checks for the permission to run the command on other players.
+     * When other is false, it checks for the permission to run the command on themselves.
+     * When the sender is a console, it always returns true.
+     * <p>
+     * When the sender has the permission to run the command on other players, they also have the permission to run the command on themselves.
+     *
+     * @param sender  The sender to check
+     * @param command The command to check
+     * @param other   Whether to check for the permission to run the command on other players
+     * @return True if the sender has permission to run the command, false otherwise
+     */
+    public boolean checkPermission(CommandSender sender, Command command, String suffix, boolean other) {
+        String formatedSuffix = suffix.isEmpty() ? "" : "." + suffix;
         return (sender instanceof ConsoleCommandSender)
-                || (sender.hasPermission(Configuration.PERMISSION_LAYOUT_OTHER.getValue().replace("%command%", command.getLabel())))
-                || (!other && sender.hasPermission(Configuration.PERMISSION_LAYOUT.getValue().replace("%command%", command.getLabel())));
+                || (sender.hasPermission(Configuration.PERMISSION_LAYOUT_OTHER.getValue().replace("%command%", command.getLabel() + formatedSuffix)))
+                || (!other && sender.hasPermission(Configuration.PERMISSION_LAYOUT.getValue().replace("%command%", command.getLabel() + formatedSuffix)));
     }
 
     /**

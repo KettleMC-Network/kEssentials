@@ -1,5 +1,8 @@
 repositories {
     maven {
+        url = "https://maven.enginehub.org/repo/"
+    }
+    maven {
         url = "https://repo.kettlemc.net/repository/maven-public/"
     }
     maven {

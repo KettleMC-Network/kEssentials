@@ -6,6 +6,7 @@
       "player-only": "<gray>This command can only be used by players.</gray>",
       "console-only": "<gray>This command can only be used by the console.</gray>",
       "player-not-found": "<gray>Please specify a valid player.</gray>",
+      "world-not-found": "<gray>Please specify a valid world.</gray>",
       "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has joined the game.</gray>",
       "quit": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has left the game.</gray>",
       "command-disabled": "<gray>This command has been disabled.</gray>",
@@ -216,6 +217,10 @@
       "enchantingtable": {
         "usage": "<gray>/enchantingtable <level1> <level2> <level3> [<player>]</gray>"
       }
+    },
+    "rtp": {
+      "failed": "<gray>Failed to find a safe location, please try again.</gray>",
+      "usage": "<gray>/rtp [<world>] [<player>] </gray>"
     }
   }
 }
